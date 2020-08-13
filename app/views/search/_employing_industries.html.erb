@@ -1,0 +1,30 @@
+<div class="text-secondary text-sm mt-5 border-bottom">
+  <div class="h5 font-weight-bold">Industries Employing <%= @occupation.title %></div>
+</div>
+
+<table class="table text-secondary">
+  <thead>
+    <tr class="text-center">
+      <th scope="col" class="text-left">Industry</th>
+      <th scope="col">Occupation jobs in industry (<%= @summary.jobs[:year] %>)</th>
+      <th scope="col">% Occupation in Industry (<%= @summary.jobs[:year] %>)</th>
+      <th scope="col">% Total jobs in Industry (<%= @summary.jobs[:year] %>)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @employing_industries.industries.each do |industry| %>
+      <tr>
+        <td class="text-left text-primary">
+          <div class="progress" style="height: 40px;">
+            <div class="progress-bar bg-info" role="progressbar" style="width: <%= occupation_in_industry(@employing_industries.jobs, industry) %>" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+              <span class="text-primary h6"><i class="fa fa-building ml-2 mr-2 mt-3" aria-hidden="true"></i><%= industry[:title] %></span>
+            </div>
+          </div>
+        </td>
+        <td class="text-center"><%= number_with_delimiter(industry[:in_occupation_jobs]) %></td>
+        <td class="text-center"><%= occupation_in_industry(@employing_industries.jobs, industry) %></td>
+        <td class="text-center"><%= total_jobs_in_industry(industry) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
