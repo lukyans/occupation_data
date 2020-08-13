@@ -1,0 +1,43 @@
+<div class="text-secondary text-sm mt-3">
+  <div class="h5 font-weight-bold">Occupation Summary for <%= @occupation.title %></div>
+</div>
+
+<div class="container">
+  <div class="row text-center text-secondary">
+    <div class="col-sm border-top border-right border-bottom p-5">
+      <span class="h4">
+        <%= number_with_delimiter(@employing_industries.jobs) %>
+      </span>
+      <div class="text-secondary">
+        <div>Jobs(<%= @employing_industries.year %>)</div>
+      </div>
+      <div class="text-secondary">
+        <div>above National average</div>
+      </div>
+    </div>
+    <div class="col-sm border-top border-bottom p-5">
+      <% color = @summary.jobs_growth[:regional].positive? ? "success" : "danger" %>
+      <span class="h4 text-<%=color%>">
+       <%= float_to_percentage(@summary.jobs_growth[:regional]) %>
+      </span>
+      <div>
+        <div class="font-weight-bold">% Change(<%= @trend_comparison.start_year %>-<%= @trend_comparison.end_year %>)</div>
+      </div>
+      <div>
+        <% color = @summary.jobs_growth[:national_avg].positive? ? "success" : "danger" %>
+        <div class="text-<%=color%>">Nation: <%= float_to_percentage(@summary.jobs_growth[:national_avg]) %></div>
+      </div>
+    </div>
+    <div class="col-sm border-top border-left border-bottom p-5">
+      <span class="h4">
+        <%= number_to_currency(@summary.earnings[:regional]) %>/hr
+      </span>
+      <div>
+        <div class="font-weight-bold">Median Hourly Earnings</div>
+      </div>
+      <div>
+        <div>Nation: <%= number_to_currency(@summary.earnings[:national_avg]) %></div>
+      </div>
+    </div>
+  </div>
+</div>
