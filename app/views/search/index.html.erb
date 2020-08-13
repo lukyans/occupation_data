@@ -1,0 +1,13 @@
+<div class="container p-5">
+  <div class="text-secondary h3 font-weight-bold">Occupation Overview</div>
+  <div class="text-secondary text-sm">
+    <div>
+      <%= @occupation.title %> in
+      <%= @region.title %>
+    </div>
+  </div>
+
+  <%= render partial: "occupation_summary" %>
+  <%= render partial: "regional_trends" %>
+  <%= render partial: "employing_industries" %>
+</div>
