@@ -1,0 +1,63 @@
+<div class="text-secondary text-sm mt-3 border-bottom">
+  <small class="h5 font-weight-bold">Rigional Trends</small>
+</div>
+
+<% options = {
+  title: '',
+  subtitle: '',
+  xtitle: '',
+  ytitle: 'Percent Change',
+  stacked: true
+} %>
+
+<% @series = [
+  {name: "Region", data: percentage_difference(@trend_comparison.regional, @trend_comparison.start_year, @trend_comparison.end_year)},
+  {name: "State", data: percentage_difference(@trend_comparison.state, @trend_comparison.start_year, @trend_comparison.end_year)},
+  {name: "Nation", data: percentage_difference(@trend_comparison.nation, @trend_comparison.start_year, @trend_comparison.end_year)}
+] %>
+
+<%= line_chart(@series, options) %>
+
+<table class="table mt-5 text-secondary">
+  <thead>
+    <tr class="text-center">
+      <th scope="col" class="text-left border-top-0">Region</th>
+      <th scope="col" class="border-top-0"><%= @trend_comparison.start_year %> Jobs</th>
+      <th scope="col" class="border-top-0"><%= @trend_comparison.end_year %> Jobs</th>
+      <th scope="col" class="border-top-0">Change</th>
+      <th scope="col" class="border-top-0">% Change</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="text-left">
+        <i class="fa fa-square" style="font-size:18px;color:blue"></i>
+        Region
+      </td>
+      <td class="text-center"><%= @trend_comparison.regional.first %></td>
+      <td class="text-center"><%= @trend_comparison.regional.last %></td>
+      <td class="text-center"><%= job_change(@trend_comparison.regional.first, @trend_comparison.regional.last) %></td>
+      <td class="text-center"><%= job_percent_change(@trend_comparison.regional.first, @trend_comparison.regional.last) %></td>
+    </tr>
+    <tr>
+      <td class="text-left">
+        <i class="fa fa-square" style="font-size:18px;color:green"></i>
+        State
+      </td>
+      <td class="text-center"><%= @trend_comparison.state.first %></td>
+      <td class="text-center"><%= @trend_comparison.state.last %></td>
+      <td class="text-center"><%= job_change(@trend_comparison.state.first, @trend_comparison.state.last) %></td>
+      <td class="text-center"><%= job_percent_change(@trend_comparison.state.first, @trend_comparison.state.last) %></td>
+    </tr>
+    <tr>
+      <td class="text-left">
+        <i class="fa fa-square" style="font-size:18px;color:orange"></i>
+        Nation
+      </td>
+      <td class="text-center"><%= @trend_comparison.nation.first %></td>
+      <td class="text-center"><%= @trend_comparison.nation.last %></td>
+      <td class="text-center"><%= job_change(@trend_comparison.nation.first, @trend_comparison.nation.last) %></td>
+      <td class="text-center"><%= job_percent_change(@trend_comparison.nation.first, @trend_comparison.nation.last) %></td>
+    </tr>
+  </tbody>
+</table>
