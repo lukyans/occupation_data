@@ -1,24 +1,28 @@
-# README
+# Occupation data
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+### Versions
 
-Things you may want to cover:
+Rails 6.0.3
+Ruby 2.7.0
 
-* Ruby version
+### Setup
 
-* System dependencies
+```bash
+git clone https://github.com/lukyans/occupation_data
+cd occupation_data
+```
 
-* Configuration
+Install all the gems: ```bundle install```
 
-* Database creation
+Create the database: ```rails db:create```
 
-* Database initialization
+Migrate the database: ```rails db:migrate```
 
-* How to run the test suite
+### JSON response data
 
-* Services (job queues, cache servers, search engines, etc.)
+```
+https://run.mocky.io/v3/f58e28ed-5f7b-4a96-bf29-2406b6af9fab
+```
 
-* Deployment instructions
-
-* ...
+### Live
+[Occupation Data](https://occupation-data.herokuapp.com/)
